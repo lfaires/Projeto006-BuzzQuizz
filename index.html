@@ -20,14 +20,25 @@
     </header>
 
     <div class="first-screen">
-        <div class="create-quizz">
+        <div class="create-quizz hide">
             <span>Você não criou nenhum <br> quiz ainda :( </span>
             <button onclick="openCreateQuizz()">Criar Quizz</button>
         </div>
-        <div>Todos os quizzes</div>
-        <ul class="quizzes">
-            <li><div class="quizz-title">Quem é você em HIMYM?</div></li>
-        </ul>
+        <div class="my-quizzes">
+            <div class="heading">
+                Seus quizzes 
+                <ion-icon id="create" name="add-circle-sharp" onclick="openCreateQuizz()"></ion-icon>
+            </div>
+            <ul class="quizzes">
+                <li><div class="quizz-title">Quem é você em HIMYM?</div></li>
+                <li><div class="quizz-title">Quem é você em HIMYM?</div></li>
+            </ul>
+        </div>
+        <div class="all-quizzes">
+            <div class="heading">Todos os quizzes</div>
+            <ul class="quizzes">
+            </ul>
+        </div>
     </div>
 
     <div class="second-screen hide">
