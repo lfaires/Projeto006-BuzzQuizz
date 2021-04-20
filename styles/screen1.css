@@ -3,7 +3,7 @@ body {
     background: #E5E5E5;
 }
 
-footer {
+header {
     display: flex;
     align-items: center;
     justify-content: center;
