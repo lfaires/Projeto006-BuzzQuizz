@@ -21,7 +21,7 @@ function displayQuizz(resposta) {
     for(let i=0;i < quizzes.length;i++){
         let quizz = quizzes[i];
         ulQuizzes.innerHTML += `
-        <li id="Q-${quizz.id}"><div class="quizz-title">${quizz.title}</div></li>
+        <li class="quizz-list" id="Q-${quizz.id}"><div class="quizz-title">${quizz.title}</div></li>
         `
         document.getElementById(`Q-${quizz.id}`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${quizz.image})`
     }

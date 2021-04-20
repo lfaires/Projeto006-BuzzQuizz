@@ -67,7 +67,7 @@ button {
     flex-wrap: wrap;
 }
 
-li {
+.quizz-list{
     position: relative;
     height: 181px;
     width: 340px;
