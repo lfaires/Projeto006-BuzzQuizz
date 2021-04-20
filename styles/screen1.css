@@ -17,13 +17,13 @@ header {
     color: #FFFFFF;
     font-size: 37px;
     font-weight: 700;
-    box-shadow: 0px 3px 10px grey;
+    box-shadow: 0px 3px 10px rgb(0, 0, 0, 0.5);
 }
 
 .first-screen {
     margin: 0 auto;
     margin-top: 146px;
-    width: 1100px;
+    width: 1051px;
 }
 
 .create-quizz {
@@ -67,27 +67,26 @@ button {
     flex-wrap: wrap;
 }
 
-.quizzes img {
+li {
+    position: relative;
     height: 181px;
     width: 340px;
     border-radius: 5px;
-    padding-bottom: 12px;
+    margin-bottom: 19px;
+    background-image: linear-gradient(#FFFFFF00, #00000080), url("https://pipocasclub.com.br/wp-content/uploads/2020/02/How-I-Met-Your-Mother.jpg");
+    background-size: cover;
 }
 
-li {
-    position: relative;
-}
 .quizz-title {
-    height: 54px;
+    height: 40px;
     color: #FFFFFF;
     letter-spacing: 0.5px;
     font-size: 19px;
     font-weight: normal;
     position: absolute;
     z-index: 2;
-    bottom: 25px;
+    bottom: 10px;
     left: 15px;
-    background: black;
 }
 
 .hide {
@@ -97,9 +96,8 @@ li {
 @media (max-width:1100px) {
     .first-screen {
         margin-top: 100px;
-        width: 90vw;
+        width: 349px;
     }
-
 
     header {
         display: flex;
@@ -116,8 +114,18 @@ li {
         font-weight: 700;
         box-shadow: 0px 3px 10px rgb(0, 0, 0, 0.5);
     }
+
+    .quizzes {
+        flex-direction: column;
+        flex-wrap: none;
+    }
+
     .create-quizz {
         margin-bottom: 23px;
 
+    }
+
+    li {
+        margin-bottom: 14px;
     }
 }
