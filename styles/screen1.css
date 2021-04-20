@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 body {
     font-family: roboto;
     background: #FAFAFA;
@@ -101,7 +100,7 @@ li {
         width: 90vw;
     }
 
-<<<<<<< HEAD
+
     header {
         display: flex;
         align-items: center;
@@ -116,9 +115,9 @@ li {
         font-size: 37px;
         font-weight: 700;
         box-shadow: 0px 3px 10px rgb(0, 0, 0, 0.5);
-=======
+    }
     .create-quizz {
         margin-bottom: 23px;
->>>>>>> 2dfbcc2d57c1aac7bb807d89f6f4cf5887aaf9f8
+
     }
 }
