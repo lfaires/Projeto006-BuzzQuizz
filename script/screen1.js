@@ -1,3 +1,4 @@
+let ID = [];
 getQuizzes()
 
 function openCreateQuizz(){
@@ -15,11 +16,11 @@ function getQuizzes() {
 }
 
 function displayQuizz(resposta) {
-    const ulQuizzes = document.querySelector(".quizzes")
+    const ulQuizzes = document.querySelector(".all-quizzes .quizzes")
     const quizzes = resposta.data
-    
     for(let i=0;i < quizzes.length;i++){
         let quizz = quizzes[i];
+        ID.push(quizz.id)
         ulQuizzes.innerHTML += `
         <li class="quizz-list" id="Q-${quizz.id}"><div class="quizz-title">${quizz.title}</div></li>
         `
@@ -31,3 +32,5 @@ function errorDisplayQuizz(resposta) {
     window.location.reload()
     getQuizzes()
 }
+
+console.log(ID)
