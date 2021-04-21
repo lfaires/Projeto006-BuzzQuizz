@@ -141,16 +141,16 @@
     </div>
 
     <div class="third-screen">
-        <div class="start-quizz">
-            <input id="quizz-title" type="text" placeholder="Título do seu quizz">
+        <div class="create-start">
+            <input id="quizz-title"  type="text" placeholder="Título do seu quizz">
             <input id="quizz-image" type="url" placeholder="URL da imagem do seu quizz">
             <input id="quizz-questions" type="text" placeholder="Quantidade de perguntas do quizz">
             <input id="quizz-levels" type="text" placeholder="Quantidade de níveis do quizz">
-            <button onclick="createQuizz()">Prosseguir pra criar perguntas</button>
+            <button onclick="submitQuizz()">Prosseguir pra criar perguntas</button>
         </div>
-        <div class="create-questions"></div>
-        <div class="create-levels"></div>
-        <div class="ready"></div>
+        <div class="create-questions hide" onclick=""></div>
+        <div class="create-levels hide" onclick=""></div>
+        <div class="create-ready hide">Quizz Prontinho</div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
