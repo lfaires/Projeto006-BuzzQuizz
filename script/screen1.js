@@ -1,4 +1,5 @@
 let ID = [];
+let myID = [1, 5, 6]
 getQuizzes()
 
 function openCreateQuizz(){
@@ -20,12 +21,14 @@ function displayQuizz(resposta) {
     const quizzes = resposta.data
     for(let i=0;i < quizzes.length;i++){
         let quizz = quizzes[i];
-        ID.push(quizz.id)
+        console.log(quizzes[i].id)
+        ID.push(quizzes[i].id)
         ulQuizzes.innerHTML += `
-        <li class="quizz-list" id="Q-${quizz.id}"><div class="quizz-title">${quizz.title}</div></li>
+        <li id="Q-${quizz.id}"><div class="quizz-title">${quizz.title}</div></li>
         `
         document.getElementById(`Q-${quizz.id}`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${quizz.image})`
     }
+    checkID(ID)
 }
 
 function errorDisplayQuizz(resposta) {
@@ -33,4 +36,17 @@ function errorDisplayQuizz(resposta) {
     getQuizzes()
 }
 
-console.log(ID)
+function checkID(array){
+    const intersection = array.filter(element => !myID.includes(element))
+    if(intersection !== []){
+        displayMyQuizz()
+    }
+    console.log("Sem iduser",intersection)
+}
+
+function displayMyQuizz() {
+    const myQuizz = document.querySelector(".my-quizzes")
+    const createQuizz = document.querySelector(".create-quizz")
+    createQuizz.classList.add("hide")
+    myQuizz.classList.remove("hide")
+}

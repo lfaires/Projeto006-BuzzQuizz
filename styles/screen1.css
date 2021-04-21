@@ -71,7 +71,6 @@ button {
     flex-wrap: wrap;
 }
 
-
 #create {
     color:#EC362D;
     font-size: xx-large;
@@ -87,6 +86,7 @@ button {
     height: 181px;
     width: 340px;
     border-radius: 5px;
+    margin: 0px 14px 14px 0px;
     background-image: linear-gradient(#FFFFFF00, #00000080), url("https://pipocasclub.com.br/wp-content/uploads/2020/02/How-I-Met-Your-Mother.jpg");
     background-size: cover;
 }
@@ -139,7 +139,7 @@ button {
         flex-wrap: none;
     }
 
-    .create-quizz {
+    .create-quizz, .my-quizzes {
         margin-bottom: 23px;
     }
 
