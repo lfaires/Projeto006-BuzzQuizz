@@ -123,11 +123,11 @@
 
     <div class="third-screen">
         <div class="start-quizz">
-            <input type="text" placeholder="Título do seu quizz">
-            <input type="text" placeholder="URL da imagem do seu quizz">
-            <input type="text" placeholder="Quantidade de perguntas do quizz">
-            <input type="text" placeholder="Quantidade de níveis do quizz">
-            <button>Prosseguir pra criar perguntas</button>
+            <input id="quizz-title" type="text" placeholder="Título do seu quizz">
+            <input id="quizz-image" type="url" placeholder="URL da imagem do seu quizz">
+            <input id="quizz-questions" type="text" placeholder="Quantidade de perguntas do quizz">
+            <input id="quizz-levels" type="text" placeholder="Quantidade de níveis do quizz">
+            <button onclick="createQuizz()">Prosseguir pra criar perguntas</button>
         </div>
         <div class="create-questions"></div>
         <div class="create-levels"></div>

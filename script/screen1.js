@@ -26,13 +26,11 @@ function displayQuizz(resposta) {
         iD.push(quizz.id)
         
         ulAllQuizzes.innerHTML += `
-        <li id="Q-${quizz.id}"><div class="quizz-title">${quizz.title}</div></li>
+        <li id="Q-${quizz.id}" onclick="goToQuizz(${quizz.id})"><div class="quizz-title">${quizz.title}</div></li>
         `
         document.getElementById(`Q-${quizz.id}`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${quizz.image})`
     }
     const allId = checkID(iD)
-    console.log("todos id",allId)
-    console.log("seus id", myId)
 }
 function errorDisplayQuizz(resposta) {
     window.location.reload()
