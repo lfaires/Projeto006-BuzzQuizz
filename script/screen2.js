@@ -1,4 +1,5 @@
 function selectedAnswer(selected){
+    //ACHO QUE TEM QUE TER UM IF AQUI PRA O SELECTED TER CLASSE NOT-ANSWERED
     selected.classList.add("selected")
     selected.classList.remove("not-answered")
     if(selected.classList.contains("true")){
@@ -27,5 +28,5 @@ function rolarPagina(){
         top: 520,
         left: 0,
         behavior: 'smooth'
-      });
+    });
 }
