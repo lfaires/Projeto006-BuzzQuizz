@@ -106,13 +106,10 @@ function validationQuizz(title, url, questions, levels) {
         return isValidationQuizzOk 
     }
     //validação da url ainda não está feita
-    /*if(url) === false && numberQuestions >= 2){
-        validTeste.push(true)
-    } else {
-        validTeste.push(false)
-    }*/
 }
 
 //function validationQuestion(){}
 
 //function validationLevel(){}
+
+//if(/^#[0-9A-F]{6}$/i.test(color) === true) então é hexadecimal
