@@ -1,35 +1,86 @@
-.create-start{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.requirements{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #fff;
-    margin-bottom: 50px;
-
+.third-screen span{
+    margin-bottom: 29px;
+    margin-top: 37px;
+    font-size: 20px;
+    font-weight: 700;
 }
 .third-screen input{
     height: 46px;
     width: 341px;
     border: 1px solid #d1d1d1;
+    border-radius: 5px;
     font-style: italic;
     font-size: 19px;
     margin-bottom: 9px;
     outline: 0;
 }
 
-.create-start button{
+.third-screen button{
     height: 54px;
     width: 324px;
+    margin-top: 20px;
+}
+.third-screen textarea{
+    height: 177px;
+    width: 341px;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    outline: 0;
+    font-style: italic;
+    font-size: 19px;
+    font-family: roboto;
+}
+.requirements{
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    background-color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    width: 100%;
+    align-items: flex-start;
+}
+.hide-requirement{
+    width: 100%;
+    height: 74px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 24px 16px;
+}
+.create-start{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.create-questions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-levels{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.create-ready{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ready-img{
+    background: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)), url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR8_B-4XkeeqKugS1cb2NS1T0pKsQtb9sf7A&usqp=CAU");
+    background-size: 100% 100%;
     color: #fff;
-    background-color: #EC362D;
-    border-radius: 15px;
-    font-size: 18px;
-    border: none;
-    margin-bottom: 12px; 
+    height: 142px;
+    width: 340px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 10px;
 }
 .third-screen .heading{
     display: flex;
