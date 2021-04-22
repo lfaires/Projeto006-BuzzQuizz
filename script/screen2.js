@@ -25,7 +25,7 @@ function selectedAnswer(selected){
 
 function rolarPagina(){
     window.scrollBy({
-        top: 520,
+        top: 550,
         left: 0,
         behavior: 'smooth'
     });
