@@ -21,7 +21,6 @@
     height: 500px;
 }
 .quizz-question div{
-    background: rgb(88, 49, 114);
     height: 89px;
     display: flex;
     text-align: center;

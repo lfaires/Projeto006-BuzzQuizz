@@ -3,7 +3,7 @@ const secondScreen = document.querySelector(".second-screen")
 const thirdScreen = document.querySelector(".third-screen")
 let iD = [];
 let myId = [];
-let quizz =[];
+let quizzes =[];
 getQuizzes()
 
 function openCreateQuizz(){
@@ -19,7 +19,8 @@ function getQuizzes() {
 }
 
 function displayQuizz(resposta) {
-    const quizzes = resposta.data
+    console.log(resposta.data)
+    quizzes = resposta.data
     const ulAllQuizzes = document.querySelector(".all-quizzes .quizzes")
     const ulMyQuizzes = document.querySelector(".my-quizzes .quizzes")
  
@@ -28,7 +29,11 @@ function displayQuizz(resposta) {
         iD.push(quizz.id)
         
         ulAllQuizzes.innerHTML += `
-        <li id="Q-${quizz.id}" onclick="goToQuizz(${quizz.id})"><div class="quizz-title">${quizz.title}</div></li>
+        <li id="Q-${quizz.id}" onclick="goToQuizz(${quizz.id})">
+            <div class="quizz-title">
+                ${quizz.title}
+            </div>
+        </li>
         `
         document.getElementById(`Q-${quizz.id}`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${quizz.image})`  
     }
@@ -62,28 +67,52 @@ function goToQuizz(idQuizz){
     alert("Q-"+idQuizz)
     firstScreen.classList.add("hide")
     secondScreen.classList.remove("hide")
-    
-    
     secondScreen.innerHTML += `
-        <div class="Q-${idQuizz} hide">
-            <div class="quizz-top"><span>${quizz.title}</span></div>
+        <div class="Q-${quizzes[idQuizz-1].id} hide">
+            <div class="quizz-top">
+                <span>
+                    ${quizzes[idQuizz-1].title}
+                </span>
+            </div>
             <ul class="quizz-questions">
             </ul>
         </div>`;
 
-    const quizzScreen = document.querySelector(".second-screen .Q-"+idQuizz)
+    const quizzScreen = document.querySelector(`.second-screen .Q-${quizzes[idQuizz-1].id}`)
     quizzScreen.classList.remove("hide")
 
-        document.querySelector(`.Q-${idQuizz} .quizz-top`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${quizz.image})`
-
-        let quizzQuestions = document.querySelector(`.Q-${idQuizz} .quizz-questions`)
-        for(let j=0;j<quizz.questions.length;j++){
+    document.querySelector(`.Q-${quizzes[idQuizz-1].id} .quizz-top`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${quizzes[idQuizz-1].image})`
+        
+        let quizzQuestions = document.querySelector(`.Q-${quizzes[idQuizz-1].id} .quizz-questions`)
+        for(let j=0;j<quizzes[idQuizz-1].questions.length;j++){
             quizzQuestions.innerHTML += `
-            <div class="question-title">
-                <span>${quizz.questions[j].title}</span>         
-            </div>
-            ` 
+                <li class="quizz-question P${j}">
+                    <div class="question-title">
+                    <span>
+                    ${quizzes[idQuizz-1].questions[j].title}
+                    </span> 
+                    </div>
+                    <ul class="question-options"> 
+
+                    </ul>
+                </li>
+            `;
+            document.querySelector(`.Q-${quizzes[idQuizz-1].id} .P${j} div`).style.backgroundColor = quizzes[idQuizz-1].questions[j].color;
+
+            let possibleAnswers = document.querySelector(`.P${j} .question-options`);
+            
+            
+            for(let i = 0; i < quizzes[idQuizz-1].questions[j].answers.length; i++){
+                possibleAnswers.innerHTML += `
+                <li class="question-option not-answered ${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this)">
+                    <img src="${quizzes[idQuizz-1].questions[j].answers[i].image}">
+                    <p>${quizzes[idQuizz-1].questions[j].answers[i].text}</p>
+                </li>              
+                `
+                console.log(possibleAnswers)
         }
+        }
+        
 
 }
 
