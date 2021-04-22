@@ -2,7 +2,8 @@ const firstScreen = document.querySelector(".first-screen")
 const secondScreen = document.querySelector(".second-screen")
 const thirdScreen = document.querySelector(".third-screen")
 let iD = [];
-let myId = []
+let myId = [];
+let quizz =[];
 getQuizzes()
 
 function openCreateQuizz(){
@@ -23,21 +24,13 @@ function displayQuizz(resposta) {
     const ulMyQuizzes = document.querySelector(".my-quizzes .quizzes")
  
     for(let i=0;i < quizzes.length;i++){
-        let quizz = quizzes[i];
+        quizz = quizzes[i];
         iD.push(quizz.id)
         
         ulAllQuizzes.innerHTML += `
         <li id="Q-${quizz.id}" onclick="goToQuizz(${quizz.id})"><div class="quizz-title">${quizz.title}</div></li>
         `
-        document.getElementById(`Q-${quizz.id}`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${quizz.image})`
-
-        //Populando os quizzes na screen 2
-        secondScreen.innerHTML += `
-        <div class="Q-${quizz.id} hide">
-            <div class="quizz-top"><span>${quizz.title}</span></div>
-            <ul class="quizz-questions"></ul>
-        </div>`;
-    
+        document.getElementById(`Q-${quizz.id}`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${quizz.image})`  
     }
     const allId = checkID(iD)
 }
@@ -69,10 +62,57 @@ function goToQuizz(idQuizz){
     alert("Q-"+idQuizz)
     firstScreen.classList.add("hide")
     secondScreen.classList.remove("hide")
+    
+    
+    secondScreen.innerHTML += `
+        <div class="Q-${idQuizz} hide">
+            <div class="quizz-top"><span>${quizz.title}</span></div>
+            <ul class="quizz-questions">
+            </ul>
+        </div>`;
+
     const quizzScreen = document.querySelector(".second-screen .Q-"+idQuizz)
     quizzScreen.classList.remove("hide")
+
+        document.querySelector(`.Q-${idQuizz} .quizz-top`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${quizz.image})`
+
+        let quizzQuestions = document.querySelector(`.Q-${idQuizz} .quizz-questions`)
+        for(let j=0;j<quizz.questions.length;j++){
+            quizzQuestions.innerHTML += `
+            <div class="question-title">
+                <span>${quizz.questions[j].title}</span>         
+            </div>
+            ` 
+        }
+
 }
 
 function inputQuestions(arrayObjetos){
    
 }
+
+ /*<ul class="quizz-questions">
+            <li class="quizz-question">
+                <div class="question-title">
+                    <span>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</span>         
+                </div>
+                <ul class="question-options">
+                    <li class="question-option not-answered true" onclick="selectedAnswer(this)">
+                        <img src="https://www.petz.com.br/blog/wp-content/uploads/2020/08/cat-sitter-felino.jpg">
+                        <p>Gatíneo</p>
+                    </li>
+                    <li class="question-option not-answered" onclick="selectedAnswer(this)">
+                        <img src="https://www.petz.com.br/blog/wp-content/uploads/2020/08/cat-sitter-felino.jpg">
+                        <p>Gatíneo</p>
+                        </li>
+                    <li class="question-option not-answered" onclick="selectedAnswer(this)">
+                        <img src="https://www.petz.com.br/blog/wp-content/uploads/2020/08/cat-sitter-felino.jpg">
+                        <p>Gatíneo</p>
+                    </li>
+                    <li class="question-option not-answered" onclick="selectedAnswer(this)">
+                        <img src="https://www.petz.com.br/blog/wp-content/uploads/2020/08/cat-sitter-felino.jpg">
+                        <p>Gatíneo</p>
+                    </li>                    
+                </ul>        
+            </li>
+        </ul>*/
