@@ -6,7 +6,6 @@ const createQuestion = document.querySelector(".create-questions")
 const createLevel = document.querySelector(".create-levels")
 const createReady = document.querySelector(".create-ready")
 
-
 //FUNÇÕES PARA SUBMETER
 function submitQuizz(){
     alert()
@@ -29,12 +28,16 @@ function submitQuizz(){
 
 function submitQuestion(){
     //validação dos dados das perguntas
+    //Se a validação tá ok vai esconder a tela de pergunta e abrir a de nível
     createQuestion.classList.add("hide")
     createLevel.classList.remove("hide")
 }
 
 function submitLevel(){
-        //validação dos dados dos níveis
+    //validação dos dados dos níveis
+    //Se a validação tá ok vai fazer o post para o servidor
+    //Apagar o innerHTML da tela de pergunta e nível
+    //Esconder a tela de nivel e abrir a tela de pronto
     createLevel.classList.add("hide")
     createReady.classList.remove("hide")
 }
@@ -47,19 +50,24 @@ function createQuestionAndLevel(numeroQuestoes, numeroNiveis){
     for (let i=0; i<numeroQuestoes; i++){
         createQuestion.innerHTML += `
         <li class="question-${i+1}">
-            <div class="heading">Pergunta ${i+1}</div>
-                <input class="" placeholder="Texto da pergunta">
-                <input class="" placeholder="Cor de fundo da pergunta">
-            <div class="heading">Resposta correta</div>
-                <input class="" placeholder="Resposta correta">
-                <input class="" placeholder="URL da imagem">
-            <div class="heading">Respostas incorretas</div>
-                <input class="" placeholder="Resposta incorreta 1">
-                <input class="" placeholder="URL da imagem 1">
-                <input class="" placeholder="Resposta incorreta 2">
-                <input class="" placeholder="URL da imagem 2">
-                <input class="" placeholder="Resposta incorreta 3">
-                <input class="" placeholder="URL da imagem 3">
+            <div class="heading">
+                Pergunta ${i+1}
+                <ion-icon class="open" name="create-outline"></ion-icon>
+            </div>
+            <div class="question-body">
+                <input class="title" placeholder="Texto da pergunta">
+                <input class="color-background" placeholder="Cor de fundo da pergunta">
+                <div class="heading">Resposta correta</div>
+                <input class="correct" placeholder="Resposta correta">
+                <input class="correct-img" placeholder="URL da imagem">
+                <div class="heading">Respostas incorretas</div>
+                <input class="incorrect" placeholder="Resposta incorreta 1">
+                <input class="incorrect-img" placeholder="URL da imagem 1">
+                <input class="incorrect" placeholder="Resposta incorreta 2">
+                <input class="incorrect-img" placeholder="URL da imagem 2">
+                <input class="incorrect" placeholder="Resposta incorreta 3">
+                <input class="incorrect-img" placeholder="URL da imagem 3">
+            </div>    
         </li>`
     }
     createQuestion.innerHTML += `<button onclick="submitQuestion()">Prosseguir pra criar níveis</button>`
@@ -67,11 +75,16 @@ function createQuestionAndLevel(numeroQuestoes, numeroNiveis){
     for (let i=0; i<numeroNiveis; i++){
         createLevel.innerHTML += `
         <li class="level-${i+1}">
-            <div class="heading">Nível ${i+1}</div>
-            <input class="" placeholder="Título do Nível">
-            <input class="" placeholder="% de acerto mínima">
-            <input class="" placeholder="URL da imagem do nível">
-            <input class="" placeholder="Descrição do nível">
+            <div class="heading">
+                Nível ${i+1}
+                <ion-icon class="open" name="create-outline"></ion-icon>
+            </div>
+            <div>
+                <input class="" placeholder="Título do Nível">
+                <input class="" placeholder="% de acerto mínima">
+                <input class="" placeholder="URL da imagem do nível">
+                <input class="" placeholder="Descrição do nível">
+            </div>
         </li>`
     }
     createLevel.innerHTML += `<button onclick="submitLevel()">Finalizar Quizz</button>`

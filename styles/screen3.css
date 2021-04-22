@@ -31,3 +31,11 @@
     border: none;
     margin-bottom: 12px; 
 }
+.third-screen .heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.open{
+    font-size:xx-large
+}
