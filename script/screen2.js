@@ -31,15 +31,21 @@ function selectedAnswer(selected){
     checkEndQuizz(idQuizzControl, myLevel)
     
 }
-function checkEndQuizz(idQ, myLevel){
-    if(counterQuestions === (quizzes[idQ-1].questions.length)){
+function checkEndQuizz(idQ, level){
+    console.log("entrei no checkend")
+    if(counterQuestions === (idQ.questions.length)){
         const finalResult = document.querySelector(".second-screen-final")
         finalResult.classList.remove("hide")
-        if()
+        //if()
         const finalResultMsg = document.querySelector(".final-result")
         finalResultMsg.innerHTML = `
-            ${quizzes[idQ-1].levels[0].title}
+            ${level} % ${idQ.levels[0].title}
         `;
+        const finalResultImg = document.querySelector(".result-img")
+        finalResultImg.innerHTML =`
+            <img src="${idQ.levels[0].image}">
+            <span>${idQ.levels[0].text}</span>
+        `
     };
 }
 

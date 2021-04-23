@@ -93,6 +93,22 @@ function getUniqueQuizz(resposta){
         </div>
         <ul class="quizz-questions">
         </ul>
+        <div class="second-screen-final hide">
+            <div class="container-finalresult-img">
+                <div class="final-result">
+                </div>
+                <div class="result-img">
+                </div>
+                <div class="result-options">
+                    <button type="reset" class="reset-quizz">
+                        Reiniciar Quizz
+                    </button>
+                    <button type="button" class="back-home">
+                        Voltar para Home
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>`;
 
     const quizzScreen = document.querySelector(`.second-screen .Q-${uniqueQuizz.id}`)
@@ -109,96 +125,32 @@ function getUniqueQuizz(resposta){
                 <span>
                      ${uniqueQuizz.questions[j].title}
                 </span>
-            </div>
-            <ul class="quizz-questions">
-            </ul>
-        </div>
-        <div class="second-screen-final hide">
-            <div class="container-finalresult-img">
-                <div class="final-result">
                 </div>
-                <div class="result-img">
-                        <img src="https://www.liveabout.com/thmb/aaFmJR-Fo11m8anqTtkpzLyUh-U=/1130x800/filters:no_upscale():max_bytes(150000):strip_icc()/harrypotterhousepoints-5ada668c119fa80036b320d2.JPG" alt="Imagem-Resultado-Quiz">
-                        <span>AQUI TEM UMA MENSAGEM MAIOR DANDO DETALHE SOBRE O SEU NIVEL!!!</span>
-                </div>
-                <div class="result-options">
-                    <button type="reset" class="reset-quizz">
-                        Reiniciar Quizz
-                    </button>
-                    <button type="button" class="back-home">
-                        Voltar para Home
-                    </button>
-                </div>
-            </div>
-        </div>
-        `;
+            <ul class="question-options">
+            </ul>`;
 
         document.querySelector(`.Q-${uniqueQuizz.id} .P${j} div`).style.backgroundColor = uniqueQuizz.questions[j].color;
 
-    document.querySelector(`.Q-${quizzes[idQuizz-1].id} .quizz-top`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${quizzes[idQuizz-1].image})`
-        
-    let quizzQuestions = document.querySelector(`.Q-${quizzes[idQuizz-1].id} .quizz-questions`)
-    for(let j=0;j<quizzes[idQuizz-1].questions.length;j++){
-        quizzQuestions.innerHTML += `
-            <li class="quizz-question P${j}">
-                <div class="question-title">
-                <span>
-                ${quizzes[idQuizz-1].questions[j].title}
-                </span> 
-                </div>
-                <ul class="question-options"> 
-
-                </ul>
-            </li>
-        `;
-        document.querySelector(`.Q-${quizzes[idQuizz-1].id} .P${j} div`).style.backgroundColor = quizzes[idQuizz-1].questions[j].color;
-
+        document.querySelector(`.Q-${uniqueQuizz.id} .quizz-top`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${uniqueQuizz.image})`
+     
         let possibleAnswers = document.querySelector(`.P${j} .question-options`);
             
-        for(let i = 0; i < quizzes[idQuizz-1].questions[j].answers.length; i++){
+        for(let i = 0; i < uniqueQuizz.questions[j].answers.length; i++){
             possibleAnswers.innerHTML += `
-
-                <li class="question-option not-answered ${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this)">
-                    <img src="${quizzes[idQuizz-1].questions[j].answers[i].image}">
-                    <p>${quizzes[idQuizz-1].questions[j].answers[i].text}</p>
+                <li class="question-option not-answered ${uniqueQuizz.questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this)">
+                    <img src="${uniqueQuizz.questions[j].answers[i].image}">
+                    <p>${uniqueQuizz.questions[j].answers[i].text}</p>
                 </li>              
                 `;                
-        }
-        
-    }
-    idQuizzControl = idQuizz    
-    checkEndQuizz(idQuizzControl)    
-    }
+        }  
+    }  
+    idQuizzControl = uniqueQuizz;
+   checkEndQuizz(uniqueQuizz)    
 }
 
 function errorGetUniqueQuizz() {
     alert("erro")
 }
- /*<ul class="quizz-questions">
-            <li class="quizz-question">
-                <div class="question-title">
-                    <span>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</span>         
-                </div>
-                <ul class="question-options">
-                    <li class="question-option not-answered true" onclick="selectedAnswer(this)">
-                        <img src="https://www.petz.com.br/blog/wp-content/uploads/2020/08/cat-sitter-felino.jpg">
-                        <p>Gatíneo</p>
-                    </li>
-                    <li class="question-option not-answered" onclick="selectedAnswer(this)">
-                        <img src="https://www.petz.com.br/blog/wp-content/uploads/2020/08/cat-sitter-felino.jpg">
-                        <p>Gatíneo</p>
-                        </li>
-                    <li class="question-option not-answered" onclick="selectedAnswer(this)">
-                        <img src="https://www.petz.com.br/blog/wp-content/uploads/2020/08/cat-sitter-felino.jpg">
-                        <p>Gatíneo</p>
-                    </li>
-                    <li class="question-option not-answered" onclick="selectedAnswer(this)">
-                        <img src="https://www.petz.com.br/blog/wp-content/uploads/2020/08/cat-sitter-felino.jpg">
-                        <p>Gatíneo</p>
-                    </li>                    
-                </ul>        
-            </li>
-        </ul>*/
 
 function goToHome(){
     firstScreen.classList.remove("hide")
