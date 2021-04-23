@@ -1,3 +1,4 @@
+const loadingScreen = document.querySelector(".loading")
 const firstScreen = document.querySelector(".first-screen")
 const secondScreen = document.querySelector(".second-screen")
 const thirdScreen = document.querySelector(".third-screen")
@@ -15,7 +16,7 @@ function openCreateQuizz(){
 }
 
 function getQuizzes() {
-    createFirstScreen.innerHTML = "<span>Carregando...</span>"
+    loadingScreen.classList.remove("hide")
     const promiseQuizz = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes")
 
     promiseQuizz.then(displayQuizz)
@@ -23,6 +24,7 @@ function getQuizzes() {
 }
 
 function displayQuizz(resposta) {
+    loadingScreen.classList.add("hide")
     quizzes = resposta.data
    
     const ulAllQuizzes = document.querySelector(".all-quizzes .quizzes")

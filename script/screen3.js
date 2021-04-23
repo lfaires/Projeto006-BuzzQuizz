@@ -13,6 +13,7 @@ let questions = [];
 let answers = [];
 let levels = [];
 let dataQuizz =[];
+let idCreatedQuizz =0;
 
 //FUNÇÕES PARA SUBMETER
 function createQuizzBox() {
@@ -227,6 +228,7 @@ function postQuizz(){
 function saveQuizz(resposta){
     idCreatedQuizz = resposta.data.id
     alert("enviou carai")
+    console.log(idCreatedQuizz)
 }
 
 function errorSaveQuizz(){
