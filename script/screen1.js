@@ -129,8 +129,13 @@ function goToQuizz(idQuizz){
         let possibleAnswers = document.querySelector(`.P${j} .question-options`);
             
             
+<<<<<<< HEAD
         for(let i = 0; i < quizzes[idQuizz-1].questions[j].answers.length; i++){
             possibleAnswers.innerHTML += `
+=======
+            for(let i = 0; i < quizzes[idQuizz-1].questions[j].answers.length; i++){
+                possibleAnswers.innerHTML += `
+>>>>>>> dd010c55167f79c59db67f1bc38e17932ffac40d
                 <li class="question-option not-answered ${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this)">
                     <img src="${quizzes[idQuizz-1].questions[j].answers[i].image}">
                     <p>${quizzes[idQuizz-1].questions[j].answers[i].text}</p>
@@ -173,6 +178,7 @@ function inputQuestions(arrayObjetos){
             </li>
         </ul>*/
 
+<<<<<<< HEAD
         // <div class="second-screen-final hide">
         //     <div class="container-finalresult-img">
         //         <div class="final-result">
@@ -194,3 +200,11 @@ function inputQuestions(arrayObjetos){
         // </div>
         
 
+=======
+function goToHome(){
+    firstScreen.classList.remove("hide")
+    secondScreen.classList.add("hide")
+    thirdScreen.classList.add("hide")
+    getQuizzes()
+}
+>>>>>>> dd010c55167f79c59db67f1bc38e17932ffac40d
