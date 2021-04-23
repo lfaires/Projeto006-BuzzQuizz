@@ -1,15 +1,17 @@
 let counter =0;
 let counterQuestions = 0;
 let score = 0;
-function selectedAnswer(selected,answer){
+function selectedAnswer(selected){
     //ACHO QUE TEM QUE TER UM IF AQUI PRA O SELECTED TER CLASSE NOT-ANSWERED
     selected.classList.add("selected")
     selected.classList.remove("not-answered")
     if(selected.classList.contains("true")){
         selected.classList.add("correct-answer")
+        score +=1
     } else{
         selected.classList.add("wrong-answer")
     }
+    counterQuestions += 1
     for(let i = 0; i < 3; i++){
         let notSelected = document.querySelector(".not-answered")
         if(!notSelected.classList.contains("selected")){
@@ -21,15 +23,24 @@ function selectedAnswer(selected,answer){
         } else{
             notSelected.classList.add("wrong-answer")
         }
+        setTimeout(rolarPagina, 2000)
     }
-    counterQuestions++
-    if (answer === true){
-        counter += 1
-    } else {
-        counter += 0
-    }
+    let finalScore = ((score/counterQuestions) * 100);
+    let myLevel = Math.round(finalScore);
+    console.log(myLevel);
+    checkEndQuizz(idQuizzControl, myLevel)
     
-    setTimeout(rolarPagina, 2000)
+}
+function checkEndQuizz(idQ, myLevel){
+    if(counterQuestions === (quizzes[idQ-1].questions.length)){
+        const finalResult = document.querySelector(".second-screen-final")
+        finalResult.classList.remove("hide")
+        if()
+        const finalResultMsg = document.querySelector(".final-result")
+        finalResultMsg.innerHTML = `
+            ${quizzes[idQ-1].levels[0].title}
+        `;
+    };
 }
 
 function rolarPagina(){

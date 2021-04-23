@@ -5,6 +5,7 @@ const createFirstScreen = document.querySelector(".create-quizz")
 let iD = [];
 let myId = [];
 let quizzes =[];
+let idQuizzControl;
 getQuizzes()
 
 function openCreateQuizz(){
@@ -22,7 +23,6 @@ function getQuizzes() {
 }
 
 function displayQuizz(resposta) {
-    console.log(resposta.data)
     quizzes = resposta.data
    
     const ulAllQuizzes = document.querySelector(".all-quizzes .quizzes")
@@ -72,7 +72,7 @@ function displayMyQuizz() {
 //clicar no quiz e redirecionar pra tela 2
 
 function goToQuizz(idQuizz){
-    alert("Q-"+idQuizz)
+    alert("Q" + idQuizz)
     firstScreen.classList.add("hide")
     secondScreen.classList.remove("hide")
     secondScreen.innerHTML += `
@@ -84,45 +84,63 @@ function goToQuizz(idQuizz){
             </div>
             <ul class="quizz-questions">
             </ul>
-        </div>`;
+        </div>
+        <div class="second-screen-final hide">
+            <div class="container-finalresult-img">
+                <div class="final-result">
+                </div>
+                <div class="result-img">
+                        <img src="https://www.liveabout.com/thmb/aaFmJR-Fo11m8anqTtkpzLyUh-U=/1130x800/filters:no_upscale():max_bytes(150000):strip_icc()/harrypotterhousepoints-5ada668c119fa80036b320d2.JPG" alt="Imagem-Resultado-Quiz">
+                        <span>AQUI TEM UMA MENSAGEM MAIOR DANDO DETALHE SOBRE O SEU NIVEL!!!</span>
+                </div>
+                <div class="result-options">
+                    <button type="reset" class="reset-quizz">
+                        Reiniciar Quizz
+                    </button>
+                    <button type="button" class="back-home">
+                        Voltar para Home
+                    </button>
+                </div>
+            </div>
+        </div>
+        `;
 
     const quizzScreen = document.querySelector(`.second-screen .Q-${quizzes[idQuizz-1].id}`)
     quizzScreen.classList.remove("hide")
 
     document.querySelector(`.Q-${quizzes[idQuizz-1].id} .quizz-top`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${quizzes[idQuizz-1].image})`
         
-        let quizzQuestions = document.querySelector(`.Q-${quizzes[idQuizz-1].id} .quizz-questions`)
-        for(let j=0;j<quizzes[idQuizz-1].questions.length;j++){
-            quizzQuestions.innerHTML += `
-                <li class="quizz-question P${j}">
-                    <div class="question-title">
-                    <span>
-                    ${quizzes[idQuizz-1].questions[j].title}
-                    </span> 
-                    </div>
-                    <ul class="question-options"> 
+    let quizzQuestions = document.querySelector(`.Q-${quizzes[idQuizz-1].id} .quizz-questions`)
+    for(let j=0;j<quizzes[idQuizz-1].questions.length;j++){
+        quizzQuestions.innerHTML += `
+            <li class="quizz-question P${j}">
+                <div class="question-title">
+                <span>
+                ${quizzes[idQuizz-1].questions[j].title}
+                </span> 
+                </div>
+                <ul class="question-options"> 
 
-                    </ul>
-                </li>
-            `;
-            document.querySelector(`.Q-${quizzes[idQuizz-1].id} .P${j} div`).style.backgroundColor = quizzes[idQuizz-1].questions[j].color;
+                </ul>
+            </li>
+        `;
+        document.querySelector(`.Q-${quizzes[idQuizz-1].id} .P${j} div`).style.backgroundColor = quizzes[idQuizz-1].questions[j].color;
 
-            let possibleAnswers = document.querySelector(`.P${j} .question-options`);
+        let possibleAnswers = document.querySelector(`.P${j} .question-options`);
             
             
-            for(let i = 0; i < quizzes[idQuizz-1].questions[j].answers.length; i++){
-                possibleAnswers.innerHTML += `
-                <li class="question-option not-answered ${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this,${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer})">
+        for(let i = 0; i < quizzes[idQuizz-1].questions[j].answers.length; i++){
+            possibleAnswers.innerHTML += `
+                <li class="question-option not-answered ${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this)">
                     <img src="${quizzes[idQuizz-1].questions[j].answers[i].image}">
                     <p>${quizzes[idQuizz-1].questions[j].answers[i].text}</p>
                 </li>              
-                `
-                console.log(possibleAnswers)
+                `;                
         }
         
-        }
-        
-
+    }
+    idQuizzControl = idQuizz    
+    checkEndQuizz(idQuizzControl)    
 }
 
 function inputQuestions(arrayObjetos){
@@ -154,4 +172,25 @@ function inputQuestions(arrayObjetos){
                 </ul>        
             </li>
         </ul>*/
+
+        // <div class="second-screen-final hide">
+        //     <div class="container-finalresult-img">
+        //         <div class="final-result">
+        //                 PORCENTAGEM DE ACERTO!!! você é muito bom (OU muito ruim)!
+        //         </div>
+        //         <div class="result-img">
+        //                 <img src="https://www.liveabout.com/thmb/aaFmJR-Fo11m8anqTtkpzLyUh-U=/1130x800/filters:no_upscale():max_bytes(150000):strip_icc()/harrypotterhousepoints-5ada668c119fa80036b320d2.JPG" alt="Imagem-Resultado-Quiz">
+        //                 <span>AQUI TEM UMA MENSAGEM MAIOR DANDO DETALHE SOBRE O SEU NIVEL!!!</span>
+        //         </div>
+        //         <div class="result-options">
+        //             <button type="reset" class="reset-quizz">
+        //                 Reiniciar Quizz
+        //             </button>
+        //             <button type="button" class="back-home">
+        //                 Voltar para Home
+        //             </button>
+        //         </div>
+        //     </div>
+        // </div>
+        
 
