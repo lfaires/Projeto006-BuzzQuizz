@@ -1,6 +1,12 @@
+.third-screen {
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 341px;
+}
+
 .third-screen span{
     margin-bottom: 29px;
-    margin-top: 37px;
+    margin-top:27px;
     font-size: 20px;
     font-weight: 700;
 }
@@ -18,8 +24,15 @@
 .third-screen button{
     height: 54px;
     width: 324px;
-    margin-top: 20px;
+    margin-top: 53px;
 }
+
+.back-home {
+   
+    background: red;
+}
+
+
 .third-screen textarea{
     height: 177px;
     width: 341px;
@@ -32,6 +45,8 @@
 }
 .requirements{
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     flex-direction: column;
     padding: 24px 16px;
     background-color: #fff;
@@ -49,27 +64,13 @@
     background-color: #fff;
     padding: 24px 16px;
 }
-.create-start{
+.start-create-quizz, .create-questions, .create-levels, .create-ready{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.create-questions{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-top: 29px;
 }
 
-.create-levels{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.create-ready{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 .ready-img{
     background: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)), url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR8_B-4XkeeqKugS1cb2NS1T0pKsQtb9sf7A&usqp=CAU");
     background-size: 100% 100%;
@@ -86,7 +87,32 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 28px;
 }
 .open{
     font-size:xx-large
+}
+
+@media (min-width:1100px) {
+    .third-screen {
+        margin-top: 140px;
+        width: 564px;
+    }
+    
+    .third-screen input, .third-screen textarea {
+        width:564px;
+    }
+
+    .third-screen button{
+        margin-top: 109px;
+    }
+
+    .start-create-quizz, .create-questions, .create-levels, .create-ready{
+        margin-top: 27px;
+    }
+
+    .ready-img{
+        width:500px;
+        height: 266px;
+    }
 }

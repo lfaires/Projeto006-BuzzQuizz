@@ -1,4 +1,7 @@
-function selectedAnswer(selected){
+let counter =0;
+let counterQuestions = 0;
+let score = 0;
+function selectedAnswer(selected,answer){
     //ACHO QUE TEM QUE TER UM IF AQUI PRA O SELECTED TER CLASSE NOT-ANSWERED
     selected.classList.add("selected")
     selected.classList.remove("not-answered")
@@ -19,6 +22,12 @@ function selectedAnswer(selected){
             notSelected.classList.add("wrong-answer")
         }
     }
+    counterQuestions++
+    if (answer === true){
+        counter += 1
+    } else {
+        counter += 0
+    }
     
     setTimeout(rolarPagina, 2000)
 }
@@ -29,4 +38,9 @@ function rolarPagina(){
         left: 0,
         behavior: 'smooth'
     });
+}
+
+function scoreQuizz(){
+    const score = (counter/counterQuestions)*100
+
 }

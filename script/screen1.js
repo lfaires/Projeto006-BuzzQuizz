@@ -1,6 +1,7 @@
 const firstScreen = document.querySelector(".first-screen")
 const secondScreen = document.querySelector(".second-screen")
 const thirdScreen = document.querySelector(".third-screen")
+const createFirstScreen = document.querySelector(".create-quizz")
 let iD = [];
 let myId = [];
 let quizzes =[];
@@ -9,9 +10,11 @@ getQuizzes()
 function openCreateQuizz(){
     firstScreen.classList.add("hide")
     thirdScreen.classList.remove("hide")
+    createQuizzBox()
 }
 
 function getQuizzes() {
+    createFirstScreen.innerHTML = "<span>Carregando...</span>"
     const promiseQuizz = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes")
 
     promiseQuizz.then(displayQuizz)
@@ -21,9 +24,14 @@ function getQuizzes() {
 function displayQuizz(resposta) {
     console.log(resposta.data)
     quizzes = resposta.data
+   
     const ulAllQuizzes = document.querySelector(".all-quizzes .quizzes")
     const ulMyQuizzes = document.querySelector(".my-quizzes .quizzes")
  
+    createFirstScreen.innerHTML = `
+    <span>Você não criou nenhum <br> quiz ainda :( </span>
+    <button onclick="openCreateQuizz()">Criar Quizz</button>`
+
     for(let i=0;i < quizzes.length;i++){
         quizz = quizzes[i];
         iD.push(quizz.id)
@@ -104,13 +112,14 @@ function goToQuizz(idQuizz){
             
             for(let i = 0; i < quizzes[idQuizz-1].questions[j].answers.length; i++){
                 possibleAnswers.innerHTML += `
-                <li class="question-option not-answered ${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this)">
+                <li class="question-option not-answered ${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this,${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer})">
                     <img src="${quizzes[idQuizz-1].questions[j].answers[i].image}">
                     <p>${quizzes[idQuizz-1].questions[j].answers[i].text}</p>
                 </li>              
                 `
                 console.log(possibleAnswers)
         }
+        
         }
         
 
@@ -145,3 +154,4 @@ function inputQuestions(arrayObjetos){
                 </ul>        
             </li>
         </ul>*/
+
