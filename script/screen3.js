@@ -12,6 +12,7 @@ let numberOfLevels ="";
 let questions = [];
 let answers = [];
 let levels = [];
+let dataQuizz =[];
 
 //FUNÇÕES PARA SUBMETER
 function createQuizzBox() {
@@ -58,20 +59,28 @@ function submitQuestion(){
         let titleIncorrectAnswer3 = document.querySelector(`.question-${i} .title-incorrect3`).value
         let imageIncorrectAnswer3 = document.querySelector(`.question-${i} .image-incorrect3`).value
         
-        let answer =[{text:titleCorrectAnswer, image: imageCorrectAnswer, isCorrectAnswer: true}, {text:titleIncorrectAnswer1, image: imageIncorrectAnswer1, isCorrectAnswer: false}, {text:titleIncorrectAnswer2, image: imageIncorrectAnswer2, isCorrectAnswer: false}, {text:imageIncorrectAnswer3, image: imageIncorrectAnswer3, isCorrectAnswer: false},]
-        
+
+        if (titleIncorrectAnswer2 === ""){
+            answers =[{text:titleCorrectAnswer, image: imageCorrectAnswer, isCorrectAnswer: true}, {text:titleIncorrectAnswer1, image: imageIncorrectAnswer1, isCorrectAnswer: false}]
+        } else if (titleIncorrectAnswer3 === "") {
+            answers =[{text:titleCorrectAnswer, image: imageCorrectAnswer, isCorrectAnswer: true}, {text:titleIncorrectAnswer1, image: imageIncorrectAnswer1, isCorrectAnswer: false}, {text:titleIncorrectAnswer2, image: imageIncorrectAnswer2, isCorrectAnswer: false}]
+        } else {
+            answers =[{text:titleCorrectAnswer, image: imageCorrectAnswer, isCorrectAnswer: true}, {text:titleIncorrectAnswer1, image: imageIncorrectAnswer1, isCorrectAnswer: false}, {text:titleIncorrectAnswer2, image: imageIncorrectAnswer2, isCorrectAnswer: false}, {text:imageIncorrectAnswer3, image: imageIncorrectAnswer3, isCorrectAnswer: false}]
+        }
+
         const valid = validationQuestion(titleQuestion, colorQuestion, titleCorrectAnswer, imageCorrectAnswer, titleIncorrectAnswer1, imageIncorrectAnswer1, titleIncorrectAnswer2, imageIncorrectAnswer2, titleIncorrectAnswer3, imageIncorrectAnswer3)
         
         if (valid === true) {
-            answers.push(answer)
             questions.push({title: titleQuestion, color: colorQuestion, answers: answers})
         } else {
             answer = [];
+            questions = []
             return alert("Por favor, preencha os dados corretamente!")  
         }
     }
-    createQuestion.classList.add("hide")
+    clearCreateQuestion()
     createLevel.classList.remove("hide")
+    alert("salvou questao")
 }
 
 function submitLevel(){
@@ -88,13 +97,13 @@ function submitLevel(){
     if (valid === true) {
         levels.push(level)
     } else {
-        level = [];
+        levels= []
         return alert("Por favor, preencha os dados corretamente!")  
     }
 }
     createLevel.classList.add("hide")
     createReady.classList.remove("hide")
-    const idCreatedQuizz = postQuizz()
+    postQuizz()
     createReady.innerHTML = `
     <span>Seu quizz está pronto!</span>
     <div class="ready-img" onclick="goToQuizz(${idCreatedQuizz})"> ${titleQuizz}</div>
@@ -102,6 +111,7 @@ function submitLevel(){
     <button class="back-home" onclick="goToHome()">Voltar para home</button>
     `
     document.querySelector(".ready-img").style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${imageQuizz})`;
+    alert("salvou quizz")
 }
 
 //FUNÇÃO PARA INSERIR A QUANTIDADE DE PERGUNTAS E NÍVEIS
@@ -163,6 +173,22 @@ function clearStartQuizz(){
     document.querySelector(".levels-quizz").value = ""
 }
 
+function clearCreateQuestion(){
+    for (let i=1; i<numberOfQuestions+1;i++){
+    document.querySelector(`.question-${i} .title`).value =""
+    document.querySelector(`.question-${i} .color-background`).value =""
+    document.querySelector(`.question-${i} .title-correct`).value =""
+    document.querySelector(`.question-${i} .image-correct`).value =""
+    document.querySelector(`.question-${i} .title-incorrect1`).value =""
+    document.querySelector(`.question-${i} .image-incorrect1`).value =""
+    document.querySelector(`.question-${i} .title-incorrect2`).value =""
+    document.querySelector(`.question-${i} .image-incorrect2`).value =""
+    document.querySelector(`.question-${i} .title-incorrect3`).value =""
+    document.querySelector(`.question-${i} .image-incorrect3`).value =""
+    }
+    createQuestion.classList.add("hide");
+}
+
 // FUNÇÕES DE VALIDAÇÃO
 
 function validationQuizz(title, url, questions, levels) {
@@ -181,7 +207,7 @@ function validationQuestion(title, color, titleAnswer, imageAnswer, titleAnswer2
 }
 
 function validationLevel(title, minimum, url, description){
-    if((title.length >= 10) && (isNAN(minimum) === false && (minimum >=0 || minimum <= 100)) && (checkURL(url) === true) && (description.length >= 30) ){
+    if((title.length >= 10) && (isNaN(minimum) === false) && (minimum >=0 || minimum <= 100) && (checkURL(url) === true) && (description.length >= 30)){
         isValidationLevelOk = true
         return isValidationLevelOk 
     }
@@ -189,19 +215,22 @@ function validationLevel(title, minimum, url, description){
 
 function postQuizz(){
 
-    const dataQuizz = [{title: titleQuizz, image: imageQuizz ,questions: questions,levels:levels}]
-    const requestQuizz = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes",dataQuizz)
+    dataQuizz = [{title: titleQuizz, image: imageQuizz ,questions: questions,levels: levels}]
+    console.log()
+    const requestQuizz = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes", dataQuizz)
 
     requestQuizz.then(saveQuizz)
     requestQuizz.catch(errorSaveQuizz)
+
 }
 
-function saveQuizz(){
-
+function saveQuizz(resposta){
+    idCreatedQuizz = resposta.data.id
+    alert("enviou carai")
 }
 
 function errorSaveQuizz(){
-    
+    alert("tá dando erro")
 }
 
 function checkURL(urlString){

@@ -48,7 +48,6 @@ function displayQuizz(resposta) {
     const allId = checkID(iD)
 }
 
-
 function errorDisplayQuizz(resposta) {
     window.location.reload()
     getQuizzes()
@@ -75,60 +74,68 @@ function goToQuizz(idQuizz){
     alert("Q-"+idQuizz)
     firstScreen.classList.add("hide")
     secondScreen.classList.remove("hide")
-    secondScreen.innerHTML += `
-        <div class="Q-${quizzes[idQuizz-1].id} hide">
-            <div class="quizz-top">
-                <span>
-                    ${quizzes[idQuizz-1].title}
-                </span>
-            </div>
-            <ul class="quizz-questions">
-            </ul>
-        </div>`;
 
-    const quizzScreen = document.querySelector(`.second-screen .Q-${quizzes[idQuizz-1].id}`)
+    const promiseQuizz = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${idQuizz}`)
+
+    promiseQuizz.then(getUniqueQuizz)
+    promiseQuizz.catch(errorGetUniqueQuizz)       
+
+}
+
+function getUniqueQuizz(resposta){
+    const uniqueQuizz = resposta.data
+    secondScreen.innerHTML += `
+    <div class="Q-${uniqueQuizz.id} hide">
+        <div class="quizz-top">
+            <span>
+                ${uniqueQuizz.title}
+            </span>
+        </div>
+        <ul class="quizz-questions">
+        </ul>
+    </div>`;
+
+    const quizzScreen = document.querySelector(`.second-screen .Q-${uniqueQuizz.id}`)
     quizzScreen.classList.remove("hide")
 
-    document.querySelector(`.Q-${quizzes[idQuizz-1].id} .quizz-top`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${quizzes[idQuizz-1].image})`
-        
-        let quizzQuestions = document.querySelector(`.Q-${quizzes[idQuizz-1].id} .quizz-questions`)
-        for(let j=0;j<quizzes[idQuizz-1].questions.length;j++){
-            quizzQuestions.innerHTML += `
-                <li class="quizz-question P${j}">
-                    <div class="question-title">
-                    <span>
-                    ${quizzes[idQuizz-1].questions[j].title}
-                    </span> 
-                    </div>
-                    <ul class="question-options"> 
+    document.querySelector(`.Q-${uniqueQuizz.id} .quizz-top`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${uniqueQuizz.image})`
 
-                    </ul>
-                </li>
-            `;
-            document.querySelector(`.Q-${quizzes[idQuizz-1].id} .P${j} div`).style.backgroundColor = quizzes[idQuizz-1].questions[j].color;
+    let quizzQuestions = document.querySelector(`.Q-${uniqueQuizz.id} .quizz-questions`)
+    
+    for(let j=0;j<uniqueQuizz.questions.length;j++){
+        quizzQuestions.innerHTML += `
+            <li class="quizz-question P${j}">
+                <div class="question-title">
+                <span>
+                ${uniqueQuizz.questions[j].title}
+                </span> 
+                </div>
+                <ul class="question-options"> 
 
-            let possibleAnswers = document.querySelector(`.P${j} .question-options`);
-            
-            
-            for(let i = 0; i < quizzes[idQuizz-1].questions[j].answers.length; i++){
-                possibleAnswers.innerHTML += `
-                <li class="question-option not-answered ${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this)">
-                    <img src="${quizzes[idQuizz-1].questions[j].answers[i].image}">
-                    <p>${quizzes[idQuizz-1].questions[j].answers[i].text}</p>
-                </li>              
-                `
-                console.log(possibleAnswers)
-        }
-        
-        }
-        
+                </ul>
+            </li>
+        `;
+        document.querySelector(`.Q-${uniqueQuizz.id} .P${j} div`).style.backgroundColor = uniqueQuizz.questions[j].color;
 
+        let possibleAnswers = document.querySelector(`.P${j} .question-options`);
+        
+        
+        for(let i = 0; i < uniqueQuizz.questions[j].answers.length; i++){
+            possibleAnswers.innerHTML += `
+            <li class="question-option not-answered ${uniqueQuizz.questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this)">
+                <img src="${uniqueQuizz.questions[j].answers[i].image}">
+                <p>${uniqueQuizz.questions[j].answers[i].text}</p>
+            </li>              
+            `
+            console.log(possibleAnswers)
+    }
+    
+    }
 }
 
-function inputQuestions(arrayObjetos){
-   
+function errorGetUniqueQuizz() {
+    alert("erro")
 }
-
  /*<ul class="quizz-questions">
             <li class="quizz-question">
                 <div class="question-title">
