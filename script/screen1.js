@@ -73,10 +73,10 @@ function displayMyQuizz() {
 //clicar no quiz e redirecionar pra tela 2
 
 function goToQuizz(idQuizz){
-    alert("Q" + idQuizz)
     firstScreen.classList.add("hide")
     secondScreen.classList.remove("hide")
-
+    secondScreen.innerHTML=""
+    
     const promiseQuizz = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${idQuizz}`)
 
     promiseQuizz.then(getUniqueQuizz)
@@ -102,10 +102,10 @@ function getUniqueQuizz(resposta){
                 <div class="result-img">
                 </div>
                 <div class="result-options">
-                    <button type="reset" class="reset-quizz">
+                    <button type="reset" onclick="goToQuizz(${uniqueQuizz.id})"class="reset-quizz">
                         Reiniciar Quizz
                     </button>
-                    <button type="button" class="back-home">
+                    <button type="button" onclick="goToHome()"class="back-home">
                         Voltar para Home
                     </button>
                 </div>

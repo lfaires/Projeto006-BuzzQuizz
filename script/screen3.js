@@ -12,7 +12,6 @@ let numberOfLevels ="";
 let questions = [];
 let answers = [];
 let levels = [];
-let dataQuizz =[];
 let idCreatedQuizz =0;
 
 //FUNÇÕES PARA SUBMETER
@@ -74,7 +73,6 @@ function submitQuestion(){
         if (valid === true) {
             questions.push({title: titleQuestion, color: colorQuestion, answers: answers})
         } else {
-            answer = [];
             questions = []
             return alert("Por favor, preencha os dados corretamente!")  
         }
@@ -91,12 +89,10 @@ function submitLevel(){
     let imageLevel = document.querySelector(`.level-${i} .image`).value
     let describeLevel = document.querySelector(`.level-${i} textarea`).value
     
-    let level = [{title: titleLevel,image: imageLevel,text: describeLevel,minValue: minLevel}]
-
-    const valid = validationLevel(titleLevel, minLevel, imageLevel, describeLevel)
+     const valid = validationLevel(titleLevel, minLevel, imageLevel, describeLevel)
 
     if (valid === true) {
-        levels.push(level)
+        levels.push({title: titleLevel,image: imageLevel,text: describeLevel,minValue: minLevel})
     } else {
         levels= []
         return alert("Por favor, preencha os dados corretamente!")  
@@ -215,9 +211,8 @@ function validationLevel(title, minimum, url, description){
 }
 
 function postQuizz(){
-
-    dataQuizz = [{title: titleQuizz, image: imageQuizz ,questions: questions,levels: levels}]
-    console.log()
+    let dataQuizz = {title: titleQuizz, image: imageQuizz ,questions: questions,levels: levels}
+    
     const requestQuizz = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes", dataQuizz)
 
     requestQuizz.then(saveQuizz)
