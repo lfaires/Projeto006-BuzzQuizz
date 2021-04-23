@@ -76,7 +76,8 @@ function goToQuizz(idQuizz){
     firstScreen.classList.add("hide")
     secondScreen.classList.remove("hide")
     secondScreen.innerHTML=""
-    
+    counterQuestions = 0;
+
     const promiseQuizz = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${idQuizz}`)
 
     promiseQuizz.then(getUniqueQuizz)
@@ -136,7 +137,7 @@ function getUniqueQuizz(resposta){
         document.querySelector(`.Q-${uniqueQuizz.id} .quizz-top`).style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${uniqueQuizz.image})`
      
         let possibleAnswers = document.querySelector(`.P${j} .question-options`);
-            
+
         for(let i = 0; i < uniqueQuizz.questions[j].answers.length; i++){
             possibleAnswers.innerHTML += `
                 <li class="question-option not-answered ${uniqueQuizz.questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this)">

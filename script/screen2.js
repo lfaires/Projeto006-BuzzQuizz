@@ -12,6 +12,7 @@ function selectedAnswer(selected){
         selected.classList.add("wrong-answer")
     }
     counterQuestions += 1
+    
     for(let i = 0; i < 3; i++){
         let notSelected = document.querySelector(".not-answered")
         if(!notSelected.classList.contains("selected")){
