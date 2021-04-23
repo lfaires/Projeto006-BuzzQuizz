@@ -112,7 +112,7 @@ function goToQuizz(idQuizz){
             
             for(let i = 0; i < quizzes[idQuizz-1].questions[j].answers.length; i++){
                 possibleAnswers.innerHTML += `
-                <li class="question-option not-answered ${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this,${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer})">
+                <li class="question-option not-answered ${quizzes[idQuizz-1].questions[j].answers[i].isCorrectAnswer}" onclick="selectedAnswer(this)">
                     <img src="${quizzes[idQuizz-1].questions[j].answers[i].image}">
                     <p>${quizzes[idQuizz-1].questions[j].answers[i].text}</p>
                 </li>              
@@ -155,3 +155,9 @@ function inputQuestions(arrayObjetos){
             </li>
         </ul>*/
 
+function goToHome(){
+    firstScreen.classList.remove("hide")
+    secondScreen.classList.add("hide")
+    thirdScreen.classList.add("hide")
+    getQuizzes()
+}

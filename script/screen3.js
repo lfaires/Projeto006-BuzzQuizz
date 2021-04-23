@@ -1,14 +1,17 @@
 let isValidationQuizzOk = false;
 let isValidationQuestionOk = false;
 let isValidationLevelOk = false;
-const createStart = document.querySelector(".start-create-quizz")
-const createQuestion = document.querySelector(".create-questions")
-const createLevel = document.querySelector(".create-levels")
-const createReady = document.querySelector(".create-ready")
+const createStart = document.querySelector(".third-screen .start-create-quizz")
+const createQuestion = document.querySelector(".third-screen .create-questions")
+const createLevel = document.querySelector(".third-screen .create-levels")
+const createReady = document.querySelector(".third-screen .create-ready")
 let titleQuizz ="";
 let imageQuizz =""; 
 let numberOfQuestions = "";
 let numberOfLevels ="";
+let questions = [];
+let answers = [];
+let levels = [];
 
 //FUNÇÕES PARA SUBMETER
 function createQuizzBox() {
@@ -27,6 +30,7 @@ function submitQuizz(){
     imageQuizz = document.querySelector(".image-quizz").value
     numberOfQuestions = parseInt(document.querySelector(".questions-quizz").value)
     numberOfLevels = parseInt(document.querySelector(".levels-quizz").value)
+    alert()
     const valid = validationQuizz(titleQuizz, imageQuizz, numberOfQuestions, numberOfLevels)
  
     if (valid === true) {
@@ -42,25 +46,60 @@ function submitQuizz(){
 function submitQuestion(){
     //validação dos dados das perguntas
     //Se a validação tá ok vai esconder a tela de pergunta e abrir a de nível
+    for (let i=1;i<numberOfQuestions+1;i++){
+        let titleQuestion = document.querySelector(`.question-${i} .title`).value
+        let colorQuestion = document.querySelector(`.question-${i} .color-background`).value
+        let titleCorrectAnswer = document.querySelector(`.question-${i} .title-correct`).value
+        let imageCorrectAnswer = document.querySelector(`.question-${i} .image-correct`).value
+        let titleIncorrectAnswer1 = document.querySelector(`.question-${i} .title-incorrect1`).value
+        let imageIncorrectAnswer1 = document.querySelector(`.question-${i} .image-incorrect1`).value
+        let titleIncorrectAnswer2 = document.querySelector(`.question-${i} .title-incorrect2`).value
+        let imageIncorrectAnswer2 = document.querySelector(`.question-${i} .image-incorrect2`).value
+        let titleIncorrectAnswer3 = document.querySelector(`.question-${i} .title-incorrect3`).value
+        let imageIncorrectAnswer3 = document.querySelector(`.question-${i} .image-incorrect3`).value
+        
+        let answer =[{text:titleCorrectAnswer, image: imageCorrectAnswer, isCorrectAnswer: true}, {text:titleIncorrectAnswer1, image: imageIncorrectAnswer1, isCorrectAnswer: false}, {text:titleIncorrectAnswer2, image: imageIncorrectAnswer2, isCorrectAnswer: false}, {text:imageIncorrectAnswer3, image: imageIncorrectAnswer3, isCorrectAnswer: false},]
+        
+        const valid = validationQuestion(titleQuestion, colorQuestion, titleCorrectAnswer, imageCorrectAnswer, titleIncorrectAnswer1, imageIncorrectAnswer1, titleIncorrectAnswer2, imageIncorrectAnswer2, titleIncorrectAnswer3, imageIncorrectAnswer3)
+        
+        if (valid === true) {
+            answers.push(answer)
+            questions.push({title: titleQuestion, color: colorQuestion, answers: answers})
+        } else {
+            answer = [];
+            return alert("Por favor, preencha os dados corretamente!")  
+        }
+    }
     createQuestion.classList.add("hide")
     createLevel.classList.remove("hide")
-
-
 }
 
 function submitLevel(){
-    //validação dos dados dos níveis
-    //Se a validação tá ok vai fazer o post para o servidor
-    //Apagar o innerHTML da tela de pergunta e nível
-    //Esconder a tela de nivel e abrir a tela de pronto
+    for (let i=1;i<numberOfLevels;i++){
+    let titleLevel = document.querySelector(`.level-${i} .title`).value
+    let minLevel = parseInt(document.querySelector(`.level-${i} .min-correct`).value)
+    let imageLevel = document.querySelector(`.level-${i} .image`).value
+    let describeLevel = document.querySelector(`.level-${i} textarea`).value
+    
+    let level = [{title: titleLevel,image: imageLevel,text: describeLevel,minValue: minLevel}]
+
+    const valid = validationLevel(titleLevel, minLevel, imageLevel, describeLevel)
+
+    if (valid === true) {
+        levels.push(level)
+    } else {
+        level = [];
+        return alert("Por favor, preencha os dados corretamente!")  
+    }
+}
     createLevel.classList.add("hide")
     createReady.classList.remove("hide")
-    //postQuizz()
+    const idCreatedQuizz = postQuizz()
     createReady.innerHTML = `
     <span>Seu quizz está pronto!</span>
-    <div class="ready-img"> ${titleQuizz}</div>
-    <button class="reset-quizz" class="reset-quizz">Acessar Quizz</button>
-    <button class="back-home">Voltar para home</button>
+    <div class="ready-img" onclick="goToQuizz(${idCreatedQuizz})"> ${titleQuizz}</div>
+    <button class="reset-quizz" onclick="goToQuizz(${idCreatedQuizz})">Acessar Quizz</button>
+    <button class="back-home" onclick="goToHome()">Voltar para home</button>
     `
     document.querySelector(".ready-img").style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${imageQuizz})`;
 }
@@ -84,15 +123,15 @@ function createQuestionAndLevel(numeroQuestoes, numeroNiveis){
                 <input class="title" placeholder="Texto da pergunta">
                 <input class="color-background" placeholder="Cor de fundo da pergunta">
                 <div class="heading">Resposta correta</div>
-                <input class="title" placeholder="Resposta correta">
-                <input class="correct-img" placeholder="URL da imagem">
+                <input class="title-correct" placeholder="Resposta correta">
+                <input class="image-correct" placeholder="URL da imagem">
                 <div class="heading">Respostas incorretas</div>
-                <input class="title" placeholder="Resposta incorreta 1">
-                <input class="image" placeholder="URL da imagem 1">
-                <input class="title" placeholder="Resposta incorreta 2">
-                <input class="image" placeholder="URL da imagem 2">
-                <input class="title" placeholder="Resposta incorreta 3">
-                <input class="image" placeholder="URL da imagem 3">
+                <input class="title-incorrect1" placeholder="Resposta incorreta 1">
+                <input class="image-incorrect1" placeholder="URL da imagem 1">
+                <input class="title-incorrect2" placeholder="Resposta incorreta 2">
+                <input class="image-incorrect2" placeholder="URL da imagem 2">
+                <input class="title-incorrect3" placeholder="Resposta incorreta 3">
+                <input class="image-incorrect3" placeholder="URL da imagem 3">
             </div>    
         </div>`
     }
@@ -107,7 +146,7 @@ function createQuestionAndLevel(numeroQuestoes, numeroNiveis){
             </div>
             <div>
                 <input class="title" placeholder="Título do Nível">
-                <input class="title" placeholder="% de acerto mínima">
+                <input class="min-correct" placeholder="% de acerto mínima">
                 <input class="image" placeholder="URL da imagem do nível">
                 <textarea placeholder="Descrição do nível"></textarea>
             </div>
@@ -127,24 +166,50 @@ function clearStartQuizz(){
 // FUNÇÕES DE VALIDAÇÃO
 
 function validationQuizz(title, url, questions, levels) {
-    if((title.length >= 20 && title.length <= 68) && (isNaN(questions) === false && questions >= 3) && (isNaN(levels) === false && levels >= 2) ){
+    alert("entrei na validação")
+    if((title.length >= 20 && title.length <= 68) && (checkURL(url) === true) && (isNaN(questions) === false && questions >= 3) && (isNaN(levels) === false && levels >= 2) ){
         isValidationQuizzOk = true
         return isValidationQuizzOk 
     }
-    //validação da url ainda não está feita
 }
 
-//function validationQuestion(){}
+function validationQuestion(title, color, titleAnswer, imageAnswer, titleAnswer2, imageAnswer2, titleAnswer3, imageAnswer3, titleAnswer4, imageAnswer4){
+    if((title.length >= 20) && (/^#[0-9A-F]{6}$/i.test(color) === true) && (titleAnswer !== "" && checkURL(imageAnswer) === true) && (titleAnswer2 !== "" && checkURL(imageAnswer2) === true) ){
+        isValidationQuestionOk = true
+        return isValidationQuestionOk 
+    }
+}
 
-//function validationLevel(){}
+function validationLevel(title, minimum, url, description){
+    if((title.length >= 10) && (isNAN(minimum) === false && (minimum >=0 || minimum <= 100)) && (checkURL(url) === true) && (description.length >= 30) ){
+        isValidationLevelOk = true
+        return isValidationLevelOk 
+    }
+}
 
-//if(/^#[0-9A-F]{6}$/i.test(color) === true) então é hexadecimal
+function postQuizz(){
 
-/*function postQuizz(){
-
-    const dataQuizz = [{title: titleQuizz, image: imageQuizz ,questions:"array",levels:"array2"}]
+    const dataQuizz = [{title: titleQuizz, image: imageQuizz ,questions: questions,levels:levels}]
     const requestQuizz = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes",dataQuizz)
 
     requestQuizz.then(saveQuizz)
     requestQuizz.catch(errorSaveQuizz)
-}*/
+}
+
+function saveQuizz(){
+
+}
+
+function errorSaveQuizz(){
+    
+}
+
+function checkURL(urlString){
+    let pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+        '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    return !!pattern.test(urlString);
+}
