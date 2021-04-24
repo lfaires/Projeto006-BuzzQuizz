@@ -40,7 +40,7 @@ function checkEndQuizz(idQ, level){
         //if()
         const finalResultMsg = document.querySelector(".final-result")
         finalResultMsg.innerHTML = `
-            ${level} % ${idQ.levels[0].title}
+            ${level} % de acerto: ${idQ.levels[0].title}
         `;
         const finalResultImg = document.querySelector(".result-img")
         finalResultImg.innerHTML =`

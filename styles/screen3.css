@@ -86,7 +86,9 @@
 .open{
     font-size:xx-large
 }
-
+.hide {
+    display: none;
+}
 @media (min-width:1100px) {
     .third-screen {
         margin-top: 140px;

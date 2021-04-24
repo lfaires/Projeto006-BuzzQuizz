@@ -31,14 +31,11 @@ function submitQuizz(){
     imageQuizz = document.querySelector(".image-quizz").value
     numberOfQuestions = parseInt(document.querySelector(".questions-quizz").value)
     numberOfLevels = parseInt(document.querySelector(".levels-quizz").value)
-    alert()
     const valid = validationQuizz(titleQuizz, imageQuizz, numberOfQuestions, numberOfLevels)
  
     if (valid === true) {
         clearStartQuizz()
         createQuestionAndLevel(numberOfQuestions, numberOfLevels)
-        return alert("validação ok")
-        //Abrir tela de criação de perguntas
     } else {
         return alert("Por favor, preencha os dados corretamente!")
     }
@@ -65,7 +62,7 @@ function submitQuestion(){
         } else if (titleIncorrectAnswer3 === "") {
             answers =[{text:titleCorrectAnswer, image: imageCorrectAnswer, isCorrectAnswer: true}, {text:titleIncorrectAnswer1, image: imageIncorrectAnswer1, isCorrectAnswer: false}, {text:titleIncorrectAnswer2, image: imageIncorrectAnswer2, isCorrectAnswer: false}]
         } else {
-            answers =[{text:titleCorrectAnswer, image: imageCorrectAnswer, isCorrectAnswer: true}, {text:titleIncorrectAnswer1, image: imageIncorrectAnswer1, isCorrectAnswer: false}, {text:titleIncorrectAnswer2, image: imageIncorrectAnswer2, isCorrectAnswer: false}, {text:imageIncorrectAnswer3, image: imageIncorrectAnswer3, isCorrectAnswer: false}]
+            answers =[{text:titleCorrectAnswer, image: imageCorrectAnswer, isCorrectAnswer: true}, {text:titleIncorrectAnswer1, image: imageIncorrectAnswer1, isCorrectAnswer: false}, {text:titleIncorrectAnswer2, image: imageIncorrectAnswer2, isCorrectAnswer: false}, {text:titleIncorrectAnswer3, image: imageIncorrectAnswer3, isCorrectAnswer: false}]
         }
 
         const valid = validationQuestion(titleQuestion, colorQuestion, titleCorrectAnswer, imageCorrectAnswer, titleIncorrectAnswer1, imageIncorrectAnswer1, titleIncorrectAnswer2, imageIncorrectAnswer2, titleIncorrectAnswer3, imageIncorrectAnswer3)
@@ -79,7 +76,6 @@ function submitQuestion(){
     }
     clearCreateQuestion()
     createLevel.classList.remove("hide")
-    alert("salvou questao")
 }
 
 function submitLevel(){
@@ -98,17 +94,7 @@ function submitLevel(){
         return alert("Por favor, preencha os dados corretamente!")  
     }
 }
-    createLevel.classList.add("hide")
-    createReady.classList.remove("hide")
     postQuizz()
-    createReady.innerHTML = `
-    <span>Seu quizz está pronto!</span>
-    <div class="ready-img" onclick="goToQuizz(${idCreatedQuizz})"> ${titleQuizz}</div>
-    <button class="reset-quizz" onclick="goToQuizz(${idCreatedQuizz})">Acessar Quizz</button>
-    <button class="back-home" onclick="goToHome()">Voltar para home</button>
-    `
-    document.querySelector(".ready-img").style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${imageQuizz})`;
-    alert("salvou quizz")
 }
 
 //FUNÇÃO PARA INSERIR A QUANTIDADE DE PERGUNTAS E NÍVEIS
@@ -189,7 +175,6 @@ function clearCreateQuestion(){
 // FUNÇÕES DE VALIDAÇÃO
 
 function validationQuizz(title, url, questions, levels) {
-    alert("entrei na validação")
     if((title.length >= 20 && title.length <= 68) && (checkURL(url) === true) && (isNaN(questions) === false && questions >= 3) && (isNaN(levels) === false && levels >= 2) ){
         isValidationQuizzOk = true
         return isValidationQuizzOk 
@@ -212,7 +197,7 @@ function validationLevel(title, minimum, url, description){
 
 function postQuizz(){
     let dataQuizz = {title: titleQuizz, image: imageQuizz ,questions: questions,levels: levels}
-    
+
     const requestQuizz = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes", dataQuizz)
 
     requestQuizz.then(saveQuizz)
@@ -222,12 +207,19 @@ function postQuizz(){
 
 function saveQuizz(resposta){
     idCreatedQuizz = resposta.data.id
-    alert("enviou carai")
-    console.log(idCreatedQuizz)
+    createLevel.classList.add("hide")
+    createReady.classList.remove("hide")
+    createReady.innerHTML = `
+    <span>Seu quizz está pronto!</span>
+    <div class="ready-img" onclick="goToQuizz(${idCreatedQuizz})"> ${titleQuizz}</div>
+    <button class="reset-quizz" onclick="goToQuizz(${idCreatedQuizz})">Acessar Quizz</button>
+    <button class="back-home" onclick="goToHome()">Voltar para home</button>
+    `
+    document.querySelector(".ready-img").style.backgroundImage = `linear-gradient(#FFFFFF00, #00000080),url(${imageQuizz})`;
 }
 
 function errorSaveQuizz(){
-    alert("tá dando erro")
+    alert("Tente novamente!")
 }
 
 function checkURL(urlString){

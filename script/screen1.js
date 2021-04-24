@@ -77,6 +77,7 @@ function goToQuizz(idQuizz){
     secondScreen.classList.remove("hide")
     secondScreen.innerHTML=""
     counterQuestions = 0;
+    score=0;
 
     const promiseQuizz = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${idQuizz}`)
 
@@ -101,7 +102,7 @@ function getUniqueQuizz(resposta){
                 <div class="final-result">
                 </div>
                 <div class="result-img">
-                </div>
+                </div>    
                 <div class="result-options">
                     <button type="reset" onclick="goToQuizz(${uniqueQuizz.id})"class="reset-quizz">
                         Reiniciar Quizz
