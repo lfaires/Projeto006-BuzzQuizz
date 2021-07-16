@@ -94,10 +94,12 @@ https://projeto010-track-it.vercel.app/
 #### Feito por Luiz Aires e Matheus Lira 👋🏽 Entre em contato!
 
 Luiz:
+
 [![Twitter Badge](https://img.shields.io/badge/-@lfaires4-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/lfaires4)](https://twitter.com/lfaires4) 
 [![Linkedin Badge](https://img.shields.io/badge/-Luiz_Fernando_Aires-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lfaires4/)](https://www.linkedin.com/in/lfaires4/) 
 [![Gmail Badge](https://img.shields.io/badge/-lfaires@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:lfaires@gmail.com)](mailto:lfaires@gmail.com)
 
 
 Matheus: 
+
 [![Linkedin Badge](https://img.shields.io/badge/-Matheus_Lira-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/matheus-lira-58b70b177/)](https://www.linkedin.com/in/matheus-lira-58b70b177/) 
