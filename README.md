@@ -8,7 +8,7 @@
 
 #### Layout
 
-- Aplicar layout, seguindo figma fornecido [aqui - TrackIt](https://www.figma.com/file/nCuPD1re0r4EAwNl7OCNvz/BuzzQuizz-Turma-02?node-id=0%3A1)
+- Aplicar layout, seguindo figma fornecido [aqui - BuzzQuizz](https://www.figma.com/file/nCuPD1re0r4EAwNl7OCNvz/BuzzQuizz-Turma-02?node-id=0%3A1)
 - O layout deve alternar para versão mobile quando a largura da janela for inferior a 1100px
 
 #### Tela 1 - Lista quizzes
@@ -79,7 +79,9 @@
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-<img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+<img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
+<img alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"/>
+<img alt="CSS3" src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"/>
 
 ### Deploy:
 
@@ -91,6 +93,11 @@ https://projeto010-track-it.vercel.app/
 
 #### Feito por Luiz Aires e Matheus Lira 👋🏽 Entre em contato!
 
+Luiz:
 [![Twitter Badge](https://img.shields.io/badge/-@lfaires4-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/lfaires4)](https://twitter.com/lfaires4) 
 [![Linkedin Badge](https://img.shields.io/badge/-Luiz_Fernando_Aires-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lfaires4/)](https://www.linkedin.com/in/lfaires4/) 
 [![Gmail Badge](https://img.shields.io/badge/-lfaires@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:lfaires@gmail.com)](mailto:lfaires@gmail.com)
+
+
+Matheus: 
+[![Linkedin Badge](https://img.shields.io/badge/-Matheus_Lira-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/matheus-lira-58b70b177/)](https://www.linkedin.com/in/matheus-lira-58b70b177/) 
