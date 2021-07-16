@@ -6,19 +6,19 @@
 
 ### ✅ Requisitos
 
-#### * Layout
+#### Layout
 
 - Aplicar layout, seguindo figma fornecido [aqui - TrackIt](https://www.figma.com/file/nCuPD1re0r4EAwNl7OCNvz/BuzzQuizz-Turma-02?node-id=0%3A1)
 - O layout deve alternar para versão mobile quando a largura da janela for inferior a 1100px
 
-#### * Tela 1 - Lista quizzes
+#### Tela 1 - Lista quizzes
 
 - Nesta tela, devem ser listados os quizzes fornecidos pelo servidor, seguindo o layout dado
 - A lista de quizzes do usuário deve mostrar somente seus quizzes, enquanto a lista de baixo deve mostrar todos os quizzes recebidos, sem os do usuário. Para diferenciar os quizzes do usuário dos demais, veja o requisito **Quizzes do Usuário**
 - Os quizzes devem ser exibidos num formato retangular (conforme layout), com a imagem e título do quizz. A imagem deve estar sobreposta com um degradê de preto para transparente conforme layout. Ao clicar sobre o quizz, esta tela deve sumir e dar lugar à **Tela 2: Página de um quizz** do quizz em questão
 - Ao clicar em "Criar Quizz" ou no "+" essa tela deve sumir, dando lugar à tela de **Tela 3: Criação de Quiz**
 
-#### * Tela 2 - Página de um quizz (perguntas)
+#### Tela 2 - Página de um quizz (perguntas)
 
 - No topo do quizz, deve ser exibido um banner com a imagem e o título do quizz. A imagem deve estar escurecida com uma camada preta de 60% de opacidade.
 - As respostas de cada pergunta devem ser exibidas organizadas aleatoriamente
@@ -27,7 +27,7 @@
 - Após escolher uma resposta, o texto das opções deve ganhar a cor vermelha ou verde, conforme layout, indicando quais eram as respostas erradas e a certa
 - Após 2 segundos de respondida, deve-se scrollar a página para a próxima pergunta
 
-#### * Tela 2 - Página de um quizz (fim do quizz)
+#### Tela 2 - Página de um quizz (fim do quizz)
 
 - Após responder todas as perguntas, deve aparecer ao final da tela a caixa de resultado do quizz. Assim como na passagem das perguntas, deve-se aguardar 2 segundos após a última resposta e então scrollar a tela para exibir essa caixa de resultado
 - A pontuação do quiz (porcentagem de acertos sobre total de perguntas) deve ser calculada no front, sem nenhuma comunicação com o servidor, bem como a classificação de em qual nível o usuário ficou baseado nessa pontuação
@@ -36,7 +36,7 @@
 - Ao clicar no botão "Reiniciar Quizz", a tela deverá ser scrollada novamente para o topo, as respostas zeradas pro estado inicial e a caixa de resultado escondida novamente
 - Ao clicar no botão "Voltar pra home", essa tela deve sumir e dar lugar à **Tela 1: Lista de Quizzes**
 
-#### * Tela 3 - Criação de Quiz 
+#### Tela 3 - Criação de Quiz 
 
 - O processo de criar um quizz passará por 4 telas, seguindo o layout:
     * Tela 3.1: Informações básicas do quizz
@@ -62,11 +62,14 @@
         - [ ]  Descrição do nível: mínimo de 30 caracteres
         - [ ]  É obrigatório existir pelo menos 1 nível cuja % de acerto mínima seja 0%
 - Caso alguma validação falhe, deve ser exibida um alerta pedindo para o usuário preencher os dados corretamente. Para simplificar, não é obrigatório informar qual foi a validação que falhou.
-- Ao finalizar a criação do quizz e salvá-lo no servidor, o usuário deverá visualizar a **Tela 3.4: Sucesso do quizz**. Nesta tela ele pode clicar no quizz (ou no botão de "Acessar Quizz") para visualizar o quizz criado (Tela 2) ou voltar pra home (Tela 1)#### * Tela hábitos `(rota /habitos)`
+- Ao finalizar a criação do quizz e salvá-lo no servidor, o usuário deverá visualizar a **Tela 3.4: Sucesso do quizz**. Nesta tela ele pode clicar no quizz (ou no botão de "Acessar Quizz") para visualizar o quizz criado (Tela 2) ou voltar pra home (Tela 1)
 - Quando o usuário retornar pra home (seja imediatamente ou mais tarde), esta deve atualizar os quizzes listados para incluir o quizz recém-criado
 
 #### * Quizzes do usuário
 
+- Ao criar um quizz no servidor, este devolverá como resposta o objeto completo do quizz criado, incluindo o id (identificador único) que o servidor gerou pra este quizz
+- Para futuramente você conseguir diferenciar um quizz criado pelo usuário de outros quizzes, você pode armazenar esses ids no momento da criação do quizz
+- Na Tela 1: Lista de Quizzes, você pode comparar o id dos quizzes vindo do servidor com esses ids armazenados na criação dos quizzes para verificar se um determinado quizz foi criado pelo usuário em questão
 
 ### Status do Projeto:
 
@@ -86,7 +89,7 @@ https://projeto010-track-it.vercel.app/
 ### Autor
 ---
 
-#### Feito por Luiz Aires 👋🏽 Entre em contato!
+#### Feito por Luiz Aires e Matheus Lira 👋🏽 Entre em contato!
 
 [![Twitter Badge](https://img.shields.io/badge/-@lfaires4-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/lfaires4)](https://twitter.com/lfaires4) 
 [![Linkedin Badge](https://img.shields.io/badge/-Luiz_Fernando_Aires-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lfaires4/)](https://www.linkedin.com/in/lfaires4/) 
