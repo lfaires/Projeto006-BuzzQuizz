@@ -1,6 +1,6 @@
 # 6º Projeto - Bootcamp Responde Aí: BuzzQuizz 
 
-## Criar um site em que é possível criar e jogar quizzes
+## Primeiro pair programming do bootcamp para desenvolver um site em que é possível criar e jogar quizzes
 
 ![GitHub](https://img.shields.io/github/license/lfaires/BuzzQuizz)
 
