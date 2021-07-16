@@ -2,7 +2,7 @@
 
 ## Criar um site em que é possível criar e jogar quizzes
 
-![Badge](https://img.shields.io/github/license/lfaires/BuzzQuizz)
+![GitHub](https://img.shields.io/github/license/lfaires/BuzzQuizz)
 
 ### ✅ Requisitos
 
@@ -76,7 +76,7 @@
 100% concluído
 
 ### 🛠 Tecnologias
-u
+
 As seguintes ferramentas foram usadas na construção do projeto:
 
 <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
